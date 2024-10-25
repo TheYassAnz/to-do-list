@@ -19,7 +19,9 @@ export default function Home() {
     }, []);
     return (
         <>
-            <h2>Welcome to the Home Page 🙋</h2>
+            <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
             <h3>Current Tasks</h3>
             <ul style={{ listStyle: 'none' }}>
                 {tasks.map((task, index) => (

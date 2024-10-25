@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route, Navigate } from 'react-router-dom'
 import Login from './pages/Login';
+import './index.css';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route
