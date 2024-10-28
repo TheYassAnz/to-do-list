@@ -1,5 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import createStore from "react-auth-kit/createStore";
+import AuthProvider from "react-auth-kit";
+
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import {
@@ -11,6 +14,13 @@ import {
 } from "react-router-dom";
 import Login from "./pages/Login";
 import "./index.css";
+
+const store = createStore({
+  authName: "_auth",
+  authType: "cookie",
+  cookieDomain: window.location.hostname,
+  cookieSecure: window.location.protocol === "https:",
+});
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +35,8 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider store={store}>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 );
