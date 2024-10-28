@@ -25,6 +25,8 @@ export default function Login() {
               },
               userState: {
                 id: response.data.userId,
+                firstname: response.data.firstname,
+                lastname: response.data.lastname,
               },
             })
           ) {
