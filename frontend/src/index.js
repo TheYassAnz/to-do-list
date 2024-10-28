@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import createStore from "react-auth-kit/createStore";
 import AuthProvider from "react-auth-kit";
+import AuthOutlet from "@auth-kit/react-router/AuthOutlet";
 
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -26,7 +27,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Header />}>
       <Route index element={<Navigate to="/home" replace />} />
-      <Route path="/home" element={<Home />} />
+      <Route element={<AuthOutlet fallbackPath="/login" />}>
+        <Route path="/home" element={<Home />} />
+      </Route>
       <Route path="/login" element={<Login />} />
     </Route>,
   ),

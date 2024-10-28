@@ -1,12 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
+import useSignIn from "react-auth-kit/hooks/useSignIn";
 
 export default function Login() {
   const [credentials, setCredentials] = useState({});
+  const signIn = useSignIn();
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
     console.info("credentials:", credentials);
+
+    axios
+      .post(`${process.env.REACT_APP_API_URI}/auth/login`, credentials)
+      .then((response) => {
+        if (response.status === 200) {
+          console.info("response:", response);
+          if (
+            signIn({
+              auth: {
+                token: response.data.token,
+                type: "Bearer",
+              },
+              userState: {
+                id: response.data.userId,
+              },
+            })
+          ) {
+            navigate("/home");
+          } else {
+            console.log("User not signed in");
+          }
+        }
+      })
+      .catch((error) => console.error("error:", error));
   };
 
   return (
