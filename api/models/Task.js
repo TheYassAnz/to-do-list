@@ -3,7 +3,6 @@ const uniqueValidator = require("mongoose-unique-validator");
 
 // define the task model
 const taskModel = mongoose.Schema({
-    id: { type: "string", required: true, unique: true },
     name: { type: "string", required: true },
     archived: { type: "boolean", required: true },
 });
