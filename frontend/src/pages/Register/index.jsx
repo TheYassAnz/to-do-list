@@ -12,7 +12,6 @@ export default function Register() {
             lastname: e.target.lastname.value,
             email: e.target.email.value,
             password: e.target.password.value,
-            admin: false,
         };
         console.log(formData);
 
